@@ -21,10 +21,10 @@ export function Footer() {
           <Link
             to="/"
             aria-label="Jagdamba Poultry Farms home"
-            className="group inline-flex transition-transform hover:-translate-y-0.5"
+            className="group inline-flex rounded-[24px] bg-white px-2.5 py-2 shadow-[0_20px_45px_-28px_rgba(0,0,0,0.65)] ring-1 ring-black/8 transition-transform hover:-translate-y-0.5 sm:px-3 sm:py-2.5"
           >
             <BrandLogo
-              className="w-[78px] transition-transform group-hover:scale-[1.03] sm:w-[92px]"
+              className="w-[82px] transition-transform group-hover:scale-[1.02] sm:w-[96px] lg:w-[104px]"
               loading="eager"
             />
           </Link>

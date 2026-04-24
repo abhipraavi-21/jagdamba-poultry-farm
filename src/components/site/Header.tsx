@@ -31,9 +31,13 @@ export function Header() {
       }`}
     >
       <div className="container-x flex min-h-[74px] items-center justify-between py-2 sm:min-h-[88px]">
-        <Link to="/" className="group shrink-0" aria-label="Jagdamba Poultry Farms home">
+        <Link
+          to="/"
+          className="group shrink-0 rounded-2xl"
+          aria-label="Jagdamba Poultry Farms home"
+        >
           <BrandLogo
-            className="w-[72px] transition-transform group-hover:scale-[1.03] sm:w-[104px]"
+            className="w-[88px] transition-transform group-hover:scale-[1.02] sm:w-[116px] lg:w-[124px]"
             loading="eager"
           />
         </Link>

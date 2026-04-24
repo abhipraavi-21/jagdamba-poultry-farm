@@ -32,12 +32,14 @@ export function BrandLogo({
 type BrandIconProps = {
   alt?: string;
   className?: string;
+  imageClassName?: string;
   loading?: "eager" | "lazy";
 };
 
 export function BrandIcon({
   alt = "Jagdamba Poultry Farm emblem",
   className,
+  imageClassName,
   loading = "lazy",
 }: BrandIconProps) {
   return (
@@ -45,7 +47,7 @@ export function BrandIcon({
       <img
         src={fullLogo}
         alt={alt}
-        className="h-full w-full origin-top scale-[1.55] object-cover object-top"
+        className={cn("h-full w-full origin-top object-cover object-top scale-[2.05]", imageClassName)}
         width={557}
         height={497}
         loading={loading}
