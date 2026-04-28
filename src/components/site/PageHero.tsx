@@ -35,8 +35,8 @@ export function PageHero({
             "radial-gradient(circle at 20% 20%, white 0, transparent 40%), radial-gradient(circle at 80% 80%, white 0, transparent 35%)",
         }}
       />
-      <div className="container-x relative py-14 sm:py-16 md:py-24">
-        <nav className="mb-3 flex flex-wrap items-center gap-1.5 text-xs opacity-90 animate-[fade-in_0.5s_ease-out] sm:mb-4 sm:text-sm">
+      <div className="container-x relative py-12 sm:py-16 md:py-24">
+        <nav className="mb-3 flex flex-wrap items-center gap-1.5 text-[11px] leading-5 opacity-90 animate-[fade-in_0.5s_ease-out] sm:mb-4 sm:text-sm">
           <Link to="/" className="hover:text-accent transition-colors">
             Home
           </Link>
@@ -53,11 +53,11 @@ export function PageHero({
             </span>
           ))}
         </nav>
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold animate-[fade-up_0.6s_ease-out] drop-shadow-sm">
+        <h1 className="font-serif text-[clamp(2rem,7.5vw,4.75rem)] font-bold leading-[1.05] animate-[fade-up_0.6s_ease-out] drop-shadow-sm">
           {title}
         </h1>
         {subtitle && (
-          <p className="mt-3 max-w-2xl text-sm sm:text-base md:text-lg opacity-95 animate-[fade-up_0.7s_ease-out_0.1s_backwards]">
+          <p className="mt-3 max-w-xl text-sm leading-6 opacity-95 animate-[fade-up_0.7s_ease-out_0.1s_backwards] sm:text-base md:text-lg md:leading-8">
             {subtitle}
           </p>
         )}

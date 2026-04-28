@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, HeartHandshake, Sprout, Users } from "lucide-react";
+import { Award, HeartHandshake, ShieldCheck, Sprout, Users } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import farm from "@/assets/hero-farm.jpg";
+import aboutPhoto from "@/assets/about-photo.webp";
 import breadcrumbAbout from "@/assets/breadcrumb-about.jpg";
 
 export const Route = createFileRoute("/about")({
@@ -42,6 +43,29 @@ const TIMELINE = [
   },
 ];
 
+const STORY_HIGHLIGHTS = [
+  {
+    Icon: Sprout,
+    title: "Balanced Nutrition",
+    desc: "Scientifically planned feed and clean water help birds grow uniformly and stay strong.",
+  },
+  {
+    Icon: ShieldCheck,
+    title: "Biosecure Care",
+    desc: "Routine hygiene, vaccination and daily monitoring reduce risk and protect flock health.",
+  },
+  {
+    Icon: Users,
+    title: "Farmer Partnerships",
+    desc: "Practical support and dependable operations help our partners grow with confidence.",
+  },
+  {
+    Icon: Award,
+    title: "Reliable Quality",
+    desc: "Disciplined shed management keeps poultry production consistent as we expand.",
+  },
+];
+
 function AboutPage() {
   return (
     <SiteLayout>
@@ -54,24 +78,85 @@ function AboutPage() {
 
       {/* STORY */}
       <section className="container-x py-16 sm:py-20 md:py-24">
-        <div className="grid gap-12 lg:grid-cols-2 items-center">
-          <Reveal>
-            <img src={farm} alt="Our farm" className="rounded-2xl shadow-elegant w-full h-auto" width={1920} height={1080} loading="lazy" />
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
+          <Reveal className="h-full">
+            <div className="relative h-full overflow-hidden rounded-[32px] shadow-elegant lg:min-h-[540px]">
+              <img
+                src={aboutPhoto}
+                alt="Jagdamba poultry farm shed"
+                className="h-full w-full object-cover object-center"
+                width={1600}
+                height={1200}
+                loading="lazy"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/85 via-primary/40 to-transparent p-5 text-primary-foreground sm:p-6">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent">
+                  Inside Our Farm
+                </p>
+                <p className="mt-2 max-w-md text-sm leading-6 text-white/90">
+                  Purpose-built sheds, disciplined care and steady flock monitoring
+                  create the foundation for healthy poultry production.
+                </p>
+              </div>
+            </div>
           </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest">Our Story</p>
-            <h2 className="mt-3 font-serif text-3xl sm:text-4xl font-bold">A Legacy Built on Farmer Trust</h2>
-            <p className="mt-5 text-left text-muted-foreground leading-relaxed sm:text-justify">
-              Jagdamba Poultry Farm is a trusted poultry business focused on quality,
-              hygiene, and scientific farming practices. Starting with 50,000 birds on a
-              6-acre farm, we have steadily grown to a capacity of 1,50,000 birds by 2026.
-            </p>
-            <p className="mt-4 text-left text-muted-foreground leading-relaxed sm:text-justify">
-              We follow a structured approach using high-quality breeds, proper nutrition,
-              and strict vaccination programs to ensure healthy bird growth and consistent
-              production. Our commitment is to deliver reliable and high-quality poultry
-              farming solutions while continuously expanding with modern techniques.
-            </p>
+          <Reveal delay={0.1} className="h-full">
+            <article className="flex h-full flex-col justify-center rounded-[32px] border border-border bg-white/90 p-6 shadow-soft backdrop-blur sm:p-8 lg:min-h-[540px]">
+              <p className="text-accent text-sm font-semibold uppercase tracking-widest">
+                Our Story
+              </p>
+              <h2 className="mt-3 font-serif text-3xl font-bold sm:text-4xl">
+                A Legacy Built on Farmer Trust
+              </h2>
+              <p className="mt-5 text-justify leading-relaxed text-muted-foreground">
+                Jagdamba Poultry Farm focuses on raising birds in a clean, well-managed
+                environment where housing, feed, and farm discipline work together for
+                consistent results.
+              </p>
+              <p className="mt-4 text-justify leading-relaxed text-muted-foreground">
+                From shed ventilation to vaccination schedules, every stage of our
+                poultry operation is designed to support bird health, reliable output,
+                and long-term farmer confidence as we continue to grow.
+              </p>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {STORY_HIGHLIGHTS.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-border bg-primary/[0.03] p-4"
+                  >
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <item.Icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="mt-3 text-sm font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <div className="rounded-2xl bg-primary/6 px-4 py-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/75">
+                    Capacity
+                  </p>
+                  <p className="mt-1 font-serif text-xl font-bold text-primary">
+                    1,50,000 Birds
+                  </p>
+                </div>
+                <div className="rounded-2xl bg-accent/10 px-4 py-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+                    Farm Footprint
+                  </p>
+                  <p className="mt-1 font-serif text-xl font-bold text-foreground">
+                    6 Acre Campus
+                  </p>
+                </div>
+              </div>
+            </article>
           </Reveal>
         </div>
       </section>
@@ -85,19 +170,19 @@ function AboutPage() {
           </Reveal>
 
           <div className="relative mt-10 sm:mt-14">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border md:-translate-x-1/2" />
+            <div className="absolute top-0 bottom-0 left-3.5 w-0.5 bg-border sm:left-4 md:left-1/2 md:-translate-x-1/2" />
             <div className="space-y-8 sm:space-y-10">
               {TIMELINE.map((item, i) => (
                 <Reveal key={item.year} delay={i * 0.05}>
-                  <div className={`relative flex md:items-center gap-6 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
-                    <div className="md:w-1/2 pl-12 md:pl-0 md:px-8">
-                      <div className="rounded-2xl border border-border bg-card p-5 shadow-soft transition-shadow hover:shadow-elegant sm:p-6">
+                  <div className={`relative flex gap-4 sm:gap-6 md:items-center ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+                    <div className="pl-10 sm:pl-12 md:w-1/2 md:pl-0 md:px-8">
+                      <div className="rounded-2xl border border-border bg-card p-4 shadow-soft transition-shadow hover:shadow-elegant sm:p-6">
                         <div className="font-serif text-2xl font-bold text-accent">{item.year}</div>
                         <h3 className="font-serif text-lg font-bold mt-1">{item.title}</h3>
                         <p className="text-sm text-muted-foreground mt-2">{item.desc}</p>
                       </div>
                     </div>
-                    <div className="absolute left-4 md:left-1/2 top-6 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 h-4 w-4 rounded-full bg-primary ring-4 ring-cream" />
+                    <div className="absolute left-3.5 top-6 h-3.5 w-3.5 rounded-full bg-primary ring-4 ring-cream sm:left-4 sm:h-4 sm:w-4 md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2" />
                     <div className="hidden md:block md:w-1/2" />
                   </div>
                 </Reveal>
@@ -114,7 +199,7 @@ function AboutPage() {
             <p className="text-accent text-sm font-semibold uppercase tracking-widest">Core Values</p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl font-bold">What Guides Us</h2>
           </Reveal>
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { Icon: Award, title: "Integrity", desc: "Honest dealings, transparent contracts and unwavering commitments." },
               { Icon: Sprout, title: "Innovation", desc: "Embracing science, technology and sustainable practices." },

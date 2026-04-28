@@ -139,19 +139,21 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; overflow-x: clip; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   body {
     min-width: 320px;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
-  img, svg, video, canvas { max-width: 100%; height: auto; }
+  img, svg, video, canvas { display: block; max-width: 100%; height: auto; }
   h1, h2, h3, h4, .font-serif {
     font-family: var(--font-serif);
     letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
 }
 

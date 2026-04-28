@@ -7,6 +7,12 @@ import { Mail, MapPin, Phone, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
+import {
+  SITE_ADDRESS,
+  SITE_EMAIL,
+  SITE_MAPS_EMBED_URL,
+  SITE_PHONE_DISPLAY,
+} from "@/lib/site-contact";
 import breadcrumbContact from "@/assets/breadcrumb-contact.jpg";
 
 export const Route = createFileRoute("/contact")({
@@ -77,9 +83,9 @@ function ContactPage() {
       />
 
       <section className="container-x py-16 sm:py-20 md:py-24">
-        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[1fr_1.2fr]">
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
           {/* Left: Info + Map */}
-          <Reveal>
+          <Reveal className="min-w-0">
             <h2 className="font-serif text-2xl sm:text-3xl font-bold">Reach Us Directly</h2>
             <p className="mt-3 text-muted-foreground">
               Our team responds to every inquiry within 24 hours.
@@ -87,26 +93,26 @@ function ContactPage() {
 
             <ul className="mt-7 space-y-4 sm:mt-8 sm:space-y-5">
               {[
-                { Icon: MapPin, title: "Head Office", text: "Plot 12, Industrial Area, Lucknow, Uttar Pradesh 226010, India" },
-                { Icon: Phone, title: "Phone", text: "+91 98765 43210" },
-                { Icon: Mail, title: "Email", text: "hello@jagdambapoultry.in" },
+                { Icon: MapPin, title: "Head Office", text: SITE_ADDRESS },
+                { Icon: Phone, title: "Phone", text: SITE_PHONE_DISPLAY },
+                { Icon: Mail, title: "Email", text: SITE_EMAIL },
               ].map((c) => (
                 <li key={c.title} className="flex gap-3 sm:gap-4">
                   <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0">
                     <c.Icon className="h-5 w-5" />
                   </span>
-                  <div>
+                  <div className="min-w-0">
                     <div className="font-semibold">{c.title}</div>
-                    <div className="text-sm text-muted-foreground mt-0.5">{c.text}</div>
+                    <div className="mt-0.5 break-words text-sm text-muted-foreground">{c.text}</div>
                   </div>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-7 h-64 overflow-hidden rounded-2xl border border-border shadow-soft sm:mt-8 sm:h-72">
+            <div className="mt-7 h-56 overflow-hidden rounded-2xl border border-border shadow-soft sm:mt-8 sm:h-72">
               <iframe
                 title="Jagdamba Poultry Farms location"
-                src="https://www.google.com/maps?q=Lucknow,Uttar+Pradesh,India&output=embed"
+                src={SITE_MAPS_EMBED_URL}
                 className="w-full h-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -115,13 +121,13 @@ function ContactPage() {
           </Reveal>
 
           {/* Right: Form */}
-          <Reveal delay={0.1}>
-            <div className="rounded-2xl border border-border bg-card p-5 shadow-elegant sm:p-6 md:p-10">
+          <Reveal delay={0.1} className="min-w-0">
+            <div className="rounded-2xl border border-border bg-card p-4 shadow-elegant sm:p-6 md:p-8 xl:p-10">
               <h2 className="font-serif text-2xl sm:text-3xl font-bold">Send a Message</h2>
               <p className="mt-2 text-sm text-muted-foreground">Fill in the form and we'll get back to you shortly.</p>
 
               <form onSubmit={handleSubmit(onSubmit)} className="mt-7 space-y-5 sm:mt-8" noValidate>
-                <div className="grid sm:grid-cols-2 gap-5">
+                <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label className="block text-sm font-medium mb-1.5">Full Name</label>
                     <input {...register("name")} className={inputCls} placeholder="Your name" />
@@ -129,7 +135,7 @@ function ContactPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1.5">Phone</label>
-                    <input {...register("phone")} className={inputCls} placeholder="+91 98765 43210" />
+                    <input {...register("phone")} className={inputCls} placeholder={SITE_PHONE_DISPLAY} />
                     {errors.phone && <p className="text-xs text-destructive mt-1.5">{errors.phone.message}</p>}
                   </div>
                 </div>

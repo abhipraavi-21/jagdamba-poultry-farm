@@ -61,7 +61,7 @@ function HomePage() {
   return (
     <SiteLayout>
       {/* HERO CAROUSEL */}
-      <section className="relative h-[82svh] min-h-[500px] w-full overflow-hidden bg-primary sm:h-[86svh] sm:min-h-[560px]">
+      <section className="relative h-[78svh] min-h-[460px] w-full overflow-hidden bg-primary sm:h-[86svh] sm:min-h-[560px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -76,8 +76,8 @@ function HomePage() {
           </motion.div>
         </AnimatePresence>
 
-        <div className="container-x relative z-10 flex h-full items-end pb-20 pt-24 sm:items-center sm:pb-0 sm:pt-0">
-          <div className="max-w-2xl text-primary-foreground">
+        <div className="container-x relative z-10 flex h-full items-end pb-16 pt-24 sm:items-center sm:pb-0 sm:pt-0">
+          <div className="max-w-3xl text-primary-foreground">
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
@@ -89,14 +89,14 @@ function HomePage() {
                 <span className="inline-block rounded-full bg-accent/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-foreground sm:px-4 sm:py-1.5 sm:text-xs sm:tracking-widest">
                   {SLIDES[index].eyebrow}
                 </span>
-                <h1 className="mt-4 font-serif text-3xl font-bold leading-[1.08] sm:mt-5 sm:text-5xl sm:leading-[1.05] lg:text-6xl xl:text-7xl">
+                <h1 className="mt-4 font-serif text-[clamp(2.2rem,8vw,5rem)] font-bold leading-[1.04] sm:mt-5 lg:text-6xl xl:text-7xl">
                   {SLIDES[index].title}
                 </h1>
-                <p className="mt-4 max-w-xl text-sm opacity-90 sm:mt-5 sm:text-lg">{SLIDES[index].desc}</p>
+                <p className="mt-4 max-w-xl text-sm leading-6 opacity-90 sm:mt-5 sm:text-lg sm:leading-8">{SLIDES[index].desc}</p>
               </motion.div>
             </AnimatePresence>
 
-            <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
+            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
               <Link
                 to="/about"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground shadow-elegant transition-all hover:-translate-y-0.5 sm:w-auto sm:py-3.5"
@@ -155,8 +155,8 @@ function HomePage() {
       </section>
 
       {/* INNOVATION */}
-      <section className="container-x py-16 sm:py-20 md:py-28">
-        <div className="grid gap-12 lg:grid-cols-2 items-center">
+      <section className="container-x py-14 sm:py-20 md:py-28">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
           <Reveal>
             <div className="relative hover-zoom-img">
               <img src={poultry} alt="Modern poultry shed interior" className="rounded-2xl shadow-elegant w-full h-auto" width={1280} height={896} loading="lazy" />
@@ -168,7 +168,7 @@ function HomePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="text-accent text-sm font-semibold uppercase tracking-widest">Innovation</p>
-            <h2 className="mt-3 font-serif text-3xl sm:text-4xl md:text-5xl font-bold">Where Tradition Meets Technology.</h2>
+            <h2 className="mt-3 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">Where Tradition Meets Technology.</h2>
             <p className="mt-5 text-muted-foreground leading-relaxed">
               IoT-monitored sheds, climate-controlled hatcheries and AI-driven feed formulation
               help us deliver consistent quality at scale - while keeping our farmers at the
@@ -182,10 +182,62 @@ function HomePage() {
                 </li>
               ))}
             </ul>
-            <Link to="/about" className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary-glow transition-colors">
+            <Link to="/about" className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-glow sm:w-auto">
               Discover Our Story <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
+        </div>
+      </section>
+
+      {/* VISION & MISSION */}
+      <section className="bg-secondary/55 py-14 sm:py-18 md:py-20">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <p className="text-accent text-sm font-semibold uppercase tracking-widest">
+              Vision & Mission
+            </p>
+            <h2 className="mt-3 font-serif text-2xl font-bold leading-tight sm:text-3xl">
+              Innovation matters most when it serves a bigger purpose.
+            </h2>
+          </Reveal>
+
+          <div className="mx-auto mt-8 grid max-w-5xl gap-5 lg:grid-cols-2">
+            <Reveal delay={0.08} className="h-full">
+              <article className="group relative h-full overflow-hidden rounded-[30px] border border-border bg-white/95 p-6 shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/20 hover:shadow-elegant sm:p-7">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-accent/[0.06] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-primary/8 blur-3xl transition-transform duration-500 group-hover:scale-125" />
+                <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-all duration-500 group-hover:-rotate-3 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
+                  <TrendingUp className="h-5 w-5" />
+                </span>
+                <p className="relative mt-4 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+                  Vision
+                </p>
+                <p className="relative mt-3 text-sm leading-7 text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80 sm:text-base">
+                  To grow into a trusted, future-ready poultry enterprise that
+                  strengthens farmers, supports quality food systems, and expands
+                  responsibly across India.
+                </p>
+              </article>
+            </Reveal>
+
+            <Reveal delay={0.14} className="h-full">
+              <article className="group relative h-full overflow-hidden rounded-[30px] border border-border bg-white/95 p-6 shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/20 hover:shadow-elegant sm:p-7">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-accent/[0.06] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-primary/8 blur-3xl transition-transform duration-500 group-hover:scale-125" />
+                <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-all duration-500 group-hover:-rotate-3 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Sprout className="h-5 w-5" />
+                </span>
+                <p className="relative mt-4 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+                  Mission
+                </p>
+                <p className="relative mt-3 text-sm leading-7 text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80 sm:text-base">
+                  To raise healthy birds and deliver dependable poultry output through
+                  scientific nutrition, disciplined hygiene, modern farm care, and
+                  honest partnerships with farmers, customers, and communities.
+                </p>
+              </article>
+            </Reveal>
+          </div>
         </div>
       </section>
     </SiteLayout>

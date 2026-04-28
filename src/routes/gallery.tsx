@@ -1,18 +1,29 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
+import blueHopperRowPortrait from "@/assets/gallery/blue-hopper-row-portrait.jpg";
+import blueHopperRowWide from "@/assets/gallery/blue-hopper-row-wide.jpg";
 import breadcrumbCsr from "@/assets/breadcrumb-csr.jpg";
-import centralWarehouseAisle from "@/assets/gallery/central-warehouse-aisle.webp";
+import eggCrateStorageWall from "@/assets/gallery/egg-crate-storage-wall.jpg";
+import eggStorageRoomAisle from "@/assets/gallery/egg-storage-room-aisle.jpg";
+import eggStorageRoomWide from "@/assets/gallery/egg-storage-room-wide.jpg";
+import eggTrayStacksOutdoors from "@/assets/gallery/egg-tray-stacks-outdoors.jpg";
+import feederFlockCloseup from "@/assets/gallery/feeder-flock-closeup.jpg";
+import feederFlockPortrait from "@/assets/gallery/feeder-flock-portrait.jpg";
+import feedingLineCloseup from "@/assets/gallery/feeding-line-closeup.jpg";
 import farmUtilityYardOverview from "@/assets/gallery/farm-utility-yard-overview.webp";
 import farmRoofPanorama from "@/assets/gallery/farm-roof-panorama.webp";
-import feedStackCloseup from "@/assets/gallery/feed-stack-closeup.webp";
-import feedSackStorage from "@/assets/gallery/feed-sack-storage.webp";
+import greenCrateEggStorage from "@/assets/gallery/green-crate-egg-storage.jpg";
 import irrigationSideRoofView from "@/assets/gallery/irrigation-side-roof-view.webp";
-import lateAfternoonYardView from "@/assets/gallery/late-afternoon-yard-view.webp";
+import layerHouseInterior from "@/assets/gallery/layer-house-interior.jpg";
+import layerCageAislePortrait from "@/assets/gallery/layer-cage-aisle-portrait.jpg";
+import openFlockHouseInterior from "@/assets/gallery/open-flock-house-interior.jpg";
+import openFlockHouseWide from "@/assets/gallery/open-flock-house-wide.jpg";
 import operationsYardOverview from "@/assets/gallery/operations-yard-overview.webp";
 import platformSideShedView from "@/assets/gallery/platform-side-shed-view.webp";
+import poultryHouseFlockView from "@/assets/gallery/poultry-house-flock-view.jpg";
 import roofOverviewFarm from "@/assets/gallery/roof-overview-farm.webp";
 import rooflineVillageView from "@/assets/gallery/roofline-village-view.webp";
 import rooflineWithTractor from "@/assets/gallery/roofline-with-tractor.webp";
@@ -26,8 +37,8 @@ import upperRooflineDetail from "@/assets/gallery/upper-roofline-detail.webp";
 import villageRoofEdgeView from "@/assets/gallery/village-roof-edge-view.webp";
 import warehouseInterior from "@/assets/gallery/warehouse-interior.webp";
 import warehouseMachineryCorner from "@/assets/gallery/warehouse-machinery-corner.webp";
-import warehouseStackEntry from "@/assets/gallery/warehouse-stack-entry.webp";
-import warehouseWideFloorView from "@/assets/gallery/warehouse-wide-floor-view.webp";
+import warmLightFlock from "@/assets/gallery/warm-light-flock.jpg";
+import whiteBirdProfile from "@/assets/gallery/white-bird-profile.jpg";
 import sunlitOperationsYard from "@/assets/gallery/sunlit-operations-yard.webp";
 
 export const Route = createFileRoute("/gallery")({
@@ -40,11 +51,12 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:image", content: tractorSideLane },
     ],
   }),
-  component: GalleryPage,
+  component: GalleryRoute,
 });
 
 const GALLERY_ITEMS = [
   {
+    label: "Farm Exterior",
     title: "Shed Row Perspective",
     image: shedRowPerspective,
     alt: "Long poultry shed row photographed from the service road",
@@ -52,6 +64,39 @@ const GALLERY_ITEMS = [
     height: 1866,
   },
   {
+    label: "Poultry House",
+    title: "Layer House Interior",
+    image: layerHouseInterior,
+    alt: "Interior view of a poultry house with long rows of hens and feeding lines",
+    width: 1600,
+    height: 901,
+  },
+  {
+    label: "Poultry House",
+    title: "Blue Hopper Row Portrait",
+    image: blueHopperRowPortrait,
+    alt: "Portrait view of the poultry house with blue feed hoppers suspended above the cage rows",
+    width: 901,
+    height: 1600,
+  },
+  {
+    label: "Poultry House",
+    title: "Blue Hopper Row Wide",
+    image: blueHopperRowWide,
+    alt: "Wide interior view of cage rows and blue hoppers running through the poultry house",
+    width: 1600,
+    height: 901,
+  },
+  {
+    label: "Poultry House",
+    title: "Layer Cage Aisle Portrait",
+    image: layerCageAislePortrait,
+    alt: "Portrait aisle view down the long layer cage rows inside the poultry house",
+    width: 1200,
+    height: 1600,
+  },
+  {
+    label: "Farm Exterior",
     title: "Long Shed Exterior",
     image: shedExteriorOverview,
     alt: "Long poultry shed exterior view at Jagdamba Poultry Farms",
@@ -59,6 +104,15 @@ const GALLERY_ITEMS = [
     height: 1866,
   },
   {
+    label: "Feed Line",
+    title: "Feed Line Close-Up",
+    image: feedingLineCloseup,
+    alt: "Close-up of a white hen beside the feeding line inside the poultry house",
+    width: 1600,
+    height: 901,
+  },
+  {
+    label: "Operations Yard",
     title: "Service Lane and Tractor Access",
     image: tractorSideLane,
     alt: "Farm service lane with tractor beside the poultry shed",
@@ -66,6 +120,15 @@ const GALLERY_ITEMS = [
     height: 1050,
   },
   {
+    label: "Bird Close-Up",
+    title: "White Bird Profile",
+    image: whiteBirdProfile,
+    alt: "White poultry bird standing inside the shed with the rest of the flock softly blurred behind it",
+    width: 1600,
+    height: 901,
+  },
+  {
+    label: "Operations Yard",
     title: "Front Yard Tractor View",
     image: tractorYardFrontView,
     alt: "Front yard view of the poultry shed with a tractor parked nearby",
@@ -73,6 +136,31 @@ const GALLERY_ITEMS = [
     height: 1050,
   },
   {
+    label: "Live Flock",
+    title: "Warm Light Flock",
+    image: warmLightFlock,
+    alt: "Group of white poultry birds gathered inside the shed in warm golden light",
+    width: 1600,
+    height: 901,
+  },
+  {
+    label: "Live Flock",
+    title: "Feeder Flock Close-Up",
+    image: feederFlockCloseup,
+    alt: "Cluster of white birds gathered around red hanging feeders inside the poultry shed",
+    width: 1600,
+    height: 901,
+  },
+  {
+    label: "Live Flock",
+    title: "Feeder Flock Portrait",
+    image: feederFlockPortrait,
+    alt: "Portrait view of the flock around red feeders inside the poultry house",
+    width: 1200,
+    height: 1600,
+  },
+  {
+    label: "Farm Exterior",
     title: "Upper Roofline Detail",
     image: upperRooflineDetail,
     alt: "Upper roofline detail view across the farm sheds",
@@ -80,6 +168,31 @@ const GALLERY_ITEMS = [
     height: 1866,
   },
   {
+    label: "Poultry House",
+    title: "Poultry House Flock View",
+    image: poultryHouseFlockView,
+    alt: "Wide flock view inside the poultry house with feeders and drinkers visible across the floor",
+    width: 1600,
+    height: 901,
+  },
+  {
+    label: "Poultry House",
+    title: "Open Flock House Interior",
+    image: openFlockHouseInterior,
+    alt: "Interior flock view across the open poultry house with red feeders hanging through the shed",
+    width: 1600,
+    height: 901,
+  },
+  {
+    label: "Poultry House",
+    title: "Open Flock House Wide",
+    image: openFlockHouseWide,
+    alt: "Wide view across the poultry house showing a large live flock and feeder layout",
+    width: 1600,
+    height: 901,
+  },
+  {
+    label: "Farm Exterior",
     title: "Roofline Farm Overview",
     image: roofOverviewFarm,
     alt: "Elevated overview of multiple shed roofs at the farm",
@@ -87,6 +200,7 @@ const GALLERY_ITEMS = [
     height: 1866,
   },
   {
+    label: "Farm Exterior",
     title: "Farm Roof Panorama",
     image: farmRoofPanorama,
     alt: "Panoramic roof view across farm buildings and open land",
@@ -94,6 +208,7 @@ const GALLERY_ITEMS = [
     height: 1866,
   },
   {
+    label: "Farm Exterior",
     title: "Village-Side Roof View",
     image: rooflineVillageView,
     alt: "Roofline view looking toward the nearby village and fields",
@@ -101,6 +216,7 @@ const GALLERY_ITEMS = [
     height: 1866,
   },
   {
+    label: "Farm Exterior",
     title: "Roofline with Tractor",
     image: rooflineWithTractor,
     alt: "Elevated roofline view with tractor and service area below",
@@ -108,6 +224,7 @@ const GALLERY_ITEMS = [
     height: 1866,
   },
   {
+    label: "Farm Exterior",
     title: "Irrigation-Side Roof View",
     image: irrigationSideRoofView,
     alt: "Roof view with sprinkler mist and nearby buildings in the background",
@@ -115,6 +232,7 @@ const GALLERY_ITEMS = [
     height: 788,
   },
   {
+    label: "Operations Yard",
     title: "Operations Yard Overview",
     image: operationsYardOverview,
     alt: "Operations yard and shed roofs viewed from above",
@@ -122,6 +240,7 @@ const GALLERY_ITEMS = [
     height: 788,
   },
   {
+    label: "Operations Yard",
     title: "Farm Utility Yard Overview",
     image: farmUtilityYardOverview,
     alt: "Utility yard overview between the sheds and nearby buildings",
@@ -129,6 +248,7 @@ const GALLERY_ITEMS = [
     height: 788,
   },
   {
+    label: "Operations Yard",
     title: "Sunlit Operations Yard",
     image: sunlitOperationsYard,
     alt: "Sunlit operations yard beside the poultry sheds",
@@ -136,13 +256,7 @@ const GALLERY_ITEMS = [
     height: 788,
   },
   {
-    title: "Late-Afternoon Yard View",
-    image: lateAfternoonYardView,
-    alt: "Late-afternoon overview of the farm yard and sheds",
-    width: 1400,
-    height: 788,
-  },
-  {
+    label: "Operations Yard",
     title: "Shed Yard Overlook",
     image: shedYardOverlook,
     alt: "Overlook of the shed yard and nearby service buildings",
@@ -150,6 +264,7 @@ const GALLERY_ITEMS = [
     height: 788,
   },
   {
+    label: "Farm Exterior",
     title: "Village Roof Edge View",
     image: villageRoofEdgeView,
     alt: "Roof edge view facing the nearby village and open farmland",
@@ -157,34 +272,47 @@ const GALLERY_ITEMS = [
     height: 788,
   },
   {
-    title: "Feed Sack Storage",
-    image: feedSackStorage,
-    alt: "Stacks of feed sacks stored inside the warehouse",
-    width: 1400,
-    height: 788,
+    label: "Egg Handling",
+    title: "Egg Tray Stacks Outdoors",
+    image: eggTrayStacksOutdoors,
+    alt: "Stacks of filled egg trays arranged in the outdoor handling area",
+    width: 1600,
+    height: 901,
   },
   {
-    title: "Feed Stack Close-Up",
-    image: feedStackCloseup,
-    alt: "Close-up view of stacked feed sacks inside the storage area",
-    width: 1400,
-    height: 788,
+    label: "Egg Storage",
+    title: "Egg Crate Storage Wall",
+    image: eggCrateStorageWall,
+    alt: "Large wall of packed egg crates stacked inside the storage room",
+    width: 1600,
+    height: 901,
   },
   {
-    title: "Warehouse Stack Entry",
-    image: warehouseStackEntry,
-    alt: "Feed sack stacks near the warehouse entry",
-    width: 1400,
-    height: 788,
+    label: "Egg Storage",
+    title: "Green Crate Egg Storage",
+    image: greenCrateEggStorage,
+    alt: "Green storage crates filled with eggs stacked neatly along the room wall",
+    width: 1600,
+    height: 901,
   },
   {
-    title: "Central Warehouse Aisle",
-    image: centralWarehouseAisle,
-    alt: "Central aisle inside the warehouse with stacked materials on both sides",
-    width: 1400,
-    height: 1866,
+    label: "Egg Storage",
+    title: "Egg Storage Room Wide",
+    image: eggStorageRoomWide,
+    alt: "Wide interior view of the egg storage room with long rows of packed trays",
+    width: 1600,
+    height: 901,
   },
   {
+    label: "Egg Storage",
+    title: "Egg Storage Room Aisle",
+    image: eggStorageRoomAisle,
+    alt: "Egg storage room aisle view showing packed trays stretching across the room",
+    width: 1600,
+    height: 901,
+  },
+  {
+    label: "Warehouse",
     title: "Warehouse Machinery Corner",
     image: warehouseMachineryCorner,
     alt: "Warehouse corner with machinery and stored sacks",
@@ -192,6 +320,7 @@ const GALLERY_ITEMS = [
     height: 788,
   },
   {
+    label: "Warehouse",
     title: "Warehouse Interior",
     image: warehouseInterior,
     alt: "Wide interior view of the storage warehouse with stacked sacks",
@@ -199,13 +328,7 @@ const GALLERY_ITEMS = [
     height: 1866,
   },
   {
-    title: "Warehouse Wide Floor View",
-    image: warehouseWideFloorView,
-    alt: "Wide warehouse floor view with workers and stacked feed sacks",
-    width: 1400,
-    height: 1866,
-  },
-  {
+    label: "Farm Exterior",
     title: "Platform-Side Shed View",
     image: platformSideShedView,
     alt: "Platform-side exterior view of the poultry shed",
@@ -213,6 +336,7 @@ const GALLERY_ITEMS = [
     height: 1050,
   },
   {
+    label: "Farm Exterior",
     title: "Shed Loading Bay",
     image: shedLoadingBay,
     alt: "Exterior loading bay area beside a poultry shed",
@@ -221,7 +345,17 @@ const GALLERY_ITEMS = [
   },
 ];
 
-function GalleryPage() {
+function GalleryRoute() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  if (pathname !== "/gallery") {
+    return <Outlet />;
+  }
+
+  return <GalleryPhotosPage />;
+}
+
+function GalleryPhotosPage() {
   return (
     <SiteLayout>
       <PageHero
@@ -231,16 +365,16 @@ function GalleryPage() {
         image={breadcrumbCsr}
       />
 
-      <section className="container-x py-16 sm:py-20 md:py-24">
+      <section id="photos" className="container-x scroll-mt-28 py-16 sm:py-20 md:py-24">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="text-accent text-sm font-semibold uppercase tracking-[0.28em]">
             Real Site Photos
           </p>
           <h2 className="mt-3 font-serif text-3xl font-bold text-foreground sm:text-4xl">
-            Recent views from the farm, storage areas and day-to-day operations.
+            Recent views from the farm, poultry houses, storage areas and day-to-day operations.
           </h2>
           <p className="mt-4 text-sm leading-7 text-foreground/72 sm:text-base">
-            This gallery uses curated on-site photos from the shared drive, selected to keep the page clear, varied and free from repeated angles.
+            This gallery now includes the full shared photo set across live flock, layer houses, egg handling, storage areas and farm operations, arranged to keep the page clear, varied and true to the site.
           </p>
         </Reveal>
 
@@ -262,7 +396,7 @@ function GalleryPage() {
                 </div>
                 <div className="flex h-24 flex-col justify-center px-4 py-4 sm:px-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary/70">
-                    Gallery Photo
+                    {item.label}
                   </p>
                   <h3 className="mt-2 text-base font-semibold leading-snug text-foreground sm:text-lg">{item.title}</h3>
                 </div>

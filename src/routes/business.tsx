@@ -178,9 +178,9 @@ const stageHighlights = [
 
 function BusinessPage() {
   const primaryActionClass =
-    "inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-soft transition-all hover:-translate-y-0.5 hover:bg-primary-glow";
+    "inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-soft transition-all hover:-translate-y-0.5 hover:bg-primary-glow sm:w-auto";
   const secondaryActionClass =
-    "inline-flex items-center justify-center gap-2 rounded-full border border-primary/15 bg-white px-6 py-3.5 text-sm font-semibold text-primary shadow-soft transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-primary/5";
+    "inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary/15 bg-white px-6 py-3.5 text-sm font-semibold text-primary shadow-soft transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-primary/5 sm:w-auto";
 
   return (
     <SiteLayout>
@@ -194,10 +194,10 @@ function BusinessPage() {
           }}
         />
 
-        <div className="container-x relative py-16 sm:py-20 md:py-24 lg:py-28">
-          <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center xl:gap-16">
-            <Reveal>
-              <nav className="mb-6 inline-flex flex-wrap items-center gap-2 rounded-full border border-white/80 bg-white/95 px-5 py-3 text-base text-primary shadow-elegant backdrop-blur sm:mb-7">
+        <div className="container-x relative py-14 sm:py-20 md:py-24 lg:py-28">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] lg:items-center xl:gap-16">
+            <Reveal className="min-w-0">
+              <nav className="mb-6 inline-flex flex-wrap items-center gap-2 rounded-full border border-white/80 bg-white/95 px-4 py-2.5 text-sm text-primary shadow-elegant backdrop-blur sm:mb-7 sm:px-5 sm:py-3 sm:text-base">
                 <Link to="/" className="font-medium transition-colors hover:text-accent">
                   Home
                 </Link>
@@ -207,11 +207,11 @@ function BusinessPage() {
                 </span>
               </nav>
 
-              <h1 className="max-w-3xl font-serif text-4xl font-bold leading-[1.05] text-foreground sm:text-5xl md:text-6xl">
+              <h1 className="max-w-3xl font-serif text-[clamp(2.3rem,8vw,4.75rem)] font-bold leading-[1.05] text-foreground">
                 Building Healthy Poultry, Delivering Quality Production
               </h1>
 
-              <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
+              <p className="mt-5 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-lg sm:leading-8">
                 At Jagdamba Poultry Farm, we follow a carefully managed poultry farming
                 system focused on bird health, scientific feeding, proper vaccination,
                 and consistent quality production.
@@ -227,7 +227,7 @@ function BusinessPage() {
                 </Link>
               </div>
 
-              <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 {heroFocus.map((item, index) => (
                   <Reveal key={item.title} delay={0.08 + index * 0.08}>
                     <article className="h-full rounded-[28px] border border-white/70 bg-white/85 p-5 shadow-soft backdrop-blur transition-all hover:-translate-y-1 hover:shadow-elegant">
@@ -246,9 +246,9 @@ function BusinessPage() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.15} className="relative">
-              <div className="absolute -left-8 top-10 h-24 w-24 rounded-full bg-accent/25 blur-3xl" />
-              <div className="absolute -right-8 bottom-10 h-32 w-32 rounded-full bg-primary/20 blur-3xl" />
+            <Reveal delay={0.15} className="relative min-w-0">
+              <div className="absolute -left-4 top-10 h-24 w-24 rounded-full bg-accent/25 blur-3xl sm:-left-8" />
+              <div className="absolute -right-4 bottom-10 h-32 w-32 rounded-full bg-primary/20 blur-3xl sm:-right-8" />
 
               <div className="relative rounded-[34px] border border-white/75 bg-white/85 p-4 shadow-elegant backdrop-blur sm:p-6 lg:pb-24">
                 <div className="rounded-[30px] border border-primary/10 bg-gradient-to-br from-white via-white to-primary/5 p-5 sm:p-7">
@@ -300,12 +300,12 @@ function BusinessPage() {
                           Five carefully managed stages
                         </h3>
                       </div>
-                      <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em]">
+                      <span className="inline-flex max-w-full items-center justify-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-center text-xs font-semibold uppercase tracking-[0.18em]">
                         Health + Nutrition + Hygiene
                       </span>
                     </div>
 
-                    <div className="mt-6 grid gap-3 sm:grid-cols-5">
+                    <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
                       {processStages.map((stage) => (
                         <div
                           key={stage.title}
@@ -323,7 +323,7 @@ function BusinessPage() {
                   </div>
                 </div>
 
-                <div className="mt-4 w-full rounded-[24px] border border-border bg-white p-4 shadow-soft sm:mt-5 sm:max-w-[320px] sm:p-5 lg:absolute lg:bottom-6 lg:right-6 lg:mt-0 lg:max-w-[280px]">
+                <div className="mt-4 w-full rounded-[24px] border border-border bg-white p-4 shadow-soft sm:mt-5 md:max-w-[320px] sm:p-5 lg:absolute lg:right-6 lg:bottom-6 lg:mt-0 lg:max-w-[280px]">
                   <div className="flex items-start gap-3">
                     <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-accent-foreground shadow-soft">
                       <ShieldCheck className="h-5 w-5" />
@@ -345,8 +345,8 @@ function BusinessPage() {
       </section>
 
       <section className="container-x py-16 sm:py-20 md:py-24">
-        <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-start xl:gap-14">
-          <Reveal className="rounded-[32px] border border-border bg-primary p-7 text-primary-foreground shadow-elegant sm:p-8">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-start xl:gap-14">
+          <Reveal className="min-w-0 rounded-[32px] border border-border bg-primary p-7 text-primary-foreground shadow-elegant sm:p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/70">
               Business Foundation
             </p>
@@ -379,7 +379,7 @@ function BusinessPage() {
             </div>
           </Reveal>
 
-          <div>
+          <div className="min-w-0">
             <Reveal>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">
                 What We Do
@@ -425,8 +425,8 @@ function BusinessPage() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-[0.84fr_1.16fr] xl:gap-12">
-            <Reveal className="lg:sticky lg:top-28 lg:self-start">
+          <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)] xl:gap-12">
+            <Reveal className="min-w-0 lg:sticky lg:top-28 lg:self-start">
               <div className="rounded-[32px] border border-border bg-white p-6 shadow-elegant sm:p-8">
                 <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
                   Stage-Wise System
@@ -460,7 +460,7 @@ function BusinessPage() {
               </div>
             </Reveal>
 
-            <div className="relative">
+            <div className="relative min-w-0">
               <div className="absolute left-6 top-0 hidden h-full w-px bg-gradient-to-b from-primary/20 via-primary/45 to-accent/30 sm:block" />
 
               <div className="space-y-5 sm:space-y-6">
@@ -518,7 +518,7 @@ function BusinessPage() {
           </p>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {whyChooseUs.map((item, index) => (
             <Reveal key={item.title} delay={index * 0.08}>
               <article className="group h-full rounded-[28px] border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1.5 hover:shadow-elegant">
@@ -557,7 +557,7 @@ function BusinessPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {commitments.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.08}>
                 <article className="h-full rounded-[30px] border border-white/10 bg-white/5 p-6 backdrop-blur transition-colors hover:bg-white/10 sm:p-8">
@@ -594,9 +594,9 @@ function BusinessPage() {
       </section>
 
       <section className="container-x py-16 sm:py-20 md:py-24">
-        <Reveal className="relative overflow-hidden rounded-[36px] border border-border bg-gradient-to-br from-white via-cream to-primary/5 p-8 shadow-elegant sm:p-10 md:p-12">
-          <div className="absolute -left-10 top-10 h-28 w-28 rounded-full bg-accent/15 blur-3xl" />
-          <div className="absolute -right-10 bottom-8 h-36 w-36 rounded-full bg-primary/12 blur-3xl" />
+        <Reveal className="relative overflow-hidden rounded-[36px] border border-border bg-gradient-to-br from-white via-cream to-primary/5 p-6 shadow-elegant sm:p-10 md:p-12">
+          <div className="absolute -left-6 top-10 h-28 w-28 rounded-full bg-accent/15 blur-3xl sm:-left-10" />
+          <div className="absolute -right-6 bottom-8 h-36 w-36 rounded-full bg-primary/12 blur-3xl sm:-right-10" />
 
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">

@@ -1,6 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
 import { BrandLogo } from "@/components/site/BrandMark";
+import {
+  SITE_ADDRESS,
+  SITE_EMAIL,
+  SITE_EMAIL_HREF,
+  SITE_MAPS_APP_URL,
+  SITE_PHONE_DISPLAY,
+  SITE_PHONE_HREF,
+} from "@/lib/site-contact";
 
 const SOCIAL_LINKS = [
   { Icon: Facebook, label: "Facebook", href: "#" },
@@ -9,14 +17,14 @@ const SOCIAL_LINKS = [
   {
     Icon: MapPin,
     label: "Location",
-    href: "https://maps.app.goo.gl/6ShzPYzyq64YviGAA",
+    href: SITE_MAPS_APP_URL,
   },
 ] as const;
 
 export function Footer() {
   return (
     <footer className="mt-20 bg-primary text-primary-foreground">
-      <div className="container-x grid gap-6 py-9 md:grid-cols-2 md:py-10 lg:grid-cols-4 lg:py-11">
+      <div className="container-x grid gap-8 py-9 sm:grid-cols-2 sm:gap-7 md:py-10 lg:grid-cols-4 lg:py-11">
         <div className="max-w-sm">
           <Link
             to="/"
@@ -73,18 +81,15 @@ export function Footer() {
           <ul className="space-y-2 text-sm opacity-85">
             <li className="flex gap-2.5">
               <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
-              <span className="break-words">Theur Naigaon Road, Haveli, Pune 412110</span>
+              <span className="break-words">{SITE_ADDRESS}</span>
             </li>
             <li className="flex gap-2.5">
               <Phone className="h-4 w-4 mt-0.5 shrink-0" />
-              <a href="tel:+917387809229" className="break-words hover:text-accent transition-colors">+91 73878 09229</a>
+              <a href={SITE_PHONE_HREF} className="break-words hover:text-accent transition-colors">{SITE_PHONE_DISPLAY}</a>
             </li>
             <li className="flex gap-2.5">
               <Mail className="h-4 w-4 mt-0.5 shrink-0" />
-              <div className="flex flex-col gap-1">
-                <a href="mailto:hello@jagdambapoultry.in" className="hover:text-accent transition-colors break-all">hello@jagdambapoultry.in</a>
-                <a href="mailto:Gpf9292@gmail.com" className="hover:text-accent transition-colors break-all">Gpf9292@gmail.com</a>
-              </div>
+              <a href={SITE_EMAIL_HREF} className="hover:text-accent transition-colors break-all">{SITE_EMAIL}</a>
             </li>
           </ul>
         </div>
